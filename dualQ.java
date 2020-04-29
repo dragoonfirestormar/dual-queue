@@ -1,7 +1,6 @@
-
 import java.util.*;
 class dualQQ {
-    int q1[]; int q2[]; int q3[][]; // q1 n q2 -> active lobby; q3-> waiting lobby
+    int q1[]; int q2[]; int q3[][]; 
     int f1;int f2;int f3;
     int r1;int r2;int r3;
     int N1;int N2;int N3;
@@ -22,12 +21,8 @@ class dualQQ {
         t1=0;t2=0;
         counter=0;
     }
-    void main() {
-    }
-    
     void push(int n){
         if(n+r1<=10 && (n+ct1<=5 || n+t1<=5)){
-            //System.out.println("BLOCC1");
             for(int i=0 ; i<n; i++){
                 if(r1==10){
                     System.out.println("OVERFLOW");
@@ -43,10 +38,8 @@ class dualQQ {
                 ct1+=n;
                 else if(n+t1<=5)
                 t1+=n;
-                sensitive();
             }
         } else if(n+r2<=10 && (n+ct2<=5 || n+t2<=5)){
-            //System.out.println("BLOCC2");
             for(int i=0 ; i<n; i++){
                 if(r2==10){
                     System.out.println("OVERFLOW");
@@ -61,14 +54,12 @@ class dualQQ {
             ct2+=n;
             else if(n+t2<=5)
             t2=n;
-            sensitive();
         } else {
             q3[r3][0]=n;
             for(int i=1 ; i<=n; i++){
                 q3[r3][i]=y.nextInt();
             }
             r3++;
-            sensitive();
         }
     }
     void display(){
@@ -77,7 +68,6 @@ class dualQQ {
         System.out.println(Arrays.deepToString(q3));
     }
     void one(){
-        //System.out.println("ONE");
         for(int i=0; i<10; i++){
             q1[i]=q2[i];
         }
@@ -91,7 +81,6 @@ class dualQQ {
         check();
     }
     void oneW(){
-        //System.out.println("ONE");
         for(int i=0; i<10; i++){
             q1[i]=q2[i];
         }
@@ -104,20 +93,16 @@ class dualQQ {
         Arrays.fill(q2,0);
     }
     void two(){
-        //System.out.println("TWO");
         ct2=0;
         t2=0;
         r2=0;
-        //System.out.println(Arrays.toString(q1));
         Arrays.fill(q2,0);
         check();
     }
     void twoW(){
-        //System.out.println("TWO");
         ct2=0;
         t2=0;
         r2=0;
-        //System.out.println(Arrays.toString(q1));
         Arrays.fill(q2,0);
     }
     
@@ -154,12 +139,9 @@ class dualQQ {
         return realCopy; 
     }
     
-    
     void check(){
         if(q3[0][0]!=0){
-            //counter=0;
             while(true){
-                System.out.println(counter);
                 if(q3[counter][0]==0){
                     counter=0;
                     break;
@@ -177,12 +159,8 @@ class dualQQ {
                         t1+=q3[counter][0];
                     }
                     q3 = removeRow(q3,counter);
-                    //q3 = Arrays.copyOf(removeRow(q3,counter),20);
-                    //Arrays.fill(q3[19],0);
                     counter=0;
                     r3--;
-                    //System.out.println("q3 ran in 1st block");
-                    //sensitive();
                 }
                 else if(q3[counter][0]+r2<=10 && (q3[counter][0]+ct2<=5 || q3[counter][0]+t2<=5)){
                     for(int i=1; i<=q3[counter][0];i++){
@@ -197,12 +175,8 @@ class dualQQ {
                         t2+=q3[counter][0];
                     }
                     q3 = removeRow(q3,counter);
-                    //q3 = Arrays.copyOf(removeRow(q3,counter),20);
-                    //Arrays.fill(q3[19],0);
                     counter=0;
                     r3--;
-                    //System.out.println("q3 ran in 2st block");
-                    //sensitive();
                 }
                 else {
                     counter++;
@@ -211,7 +185,6 @@ class dualQQ {
         }
     }
     void sensitive(){
-        //
         System.out.println("Value of ct1: "+ ct1);
         System.out.println("Value of t1: "+ t1);
         System.out.println("Value of r1: "+ r1);
@@ -221,5 +194,4 @@ class dualQQ {
         System.out.println("Value of r3: "+ r3);
         System.out.println("Value of counter: "+ counter);
     }
-    
 }
